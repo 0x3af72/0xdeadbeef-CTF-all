@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>In Plain Sight</title>
+    <script>
+        // Show alert and disable right-click
+        document.addEventListener('contextmenu', event => {
+            alert("Right clicking has been disabled! How else can you view the source code?");
+            event.preventDefault();
+        });
+    </script>
+</head>
+<body>
+    <center>
+        <h1>Hidden in plain sight</h1>
+        <p>The flag is hidden in plain sight. But can you find it?</p>
+        <p hidden>The flag is: elio{w3b_1n5p3ct0r}</p>
+    </center>
+</body>
+</html>

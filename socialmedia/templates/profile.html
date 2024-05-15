@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ username }}'s Profile</title>
+    <style>
+        body {
+            background-color: #f4f4f9;
+            color: #333;
+            font-family: Arial, sans-serif;
+        }
+
+        .profile-container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        
+        .profile-picture {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #007bff;
+        }
+
+        .username {
+            font-size: 28px;
+            margin-top: 20px;
+            color: #007bff;
+        }
+
+        .description {
+            font-size: 18px;
+            margin-top: 10px;
+            color: #555;
+        }
+
+        .description-input, .pfp-input {
+            width: calc(100% - 40px);
+            margin: 20px auto;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #fafafa;
+            color: #333;
+            font-size: 16px;
+        }
+
+        .description-input::placeholder, .pfp-input::placeholder {
+            color: #aaa;
+        }
+
+        .submit-btn {
+            padding: 10px 20px;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .form-container {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    {% if isuser %}
+    <div class="profile-container">
+        <img class="profile-picture" src="{{ pfp }}" alt="Profile Picture"></img>
+        <div class="username">{{ username }}</div>
+        <div class="description">{{ description | safe }}</div>
+        <div class="form-container">
+            <form action="/update_description" method="post">
+                <input id="username" name="username" value="{{ username }}" hidden>
+                <textarea id="description" name="description" class="description-input" rows="4" placeholder="Update your description..."></textarea>
+                <br>
+                <button type="submit" class="submit-btn">Submit</button>
+            </form>
+            <form action="/update_pfp" method="post">
+                <input id="username" name="username" value="{{ username }}" hidden>
+                <textarea id="pfp" name="pfp" class="pfp-input" rows="1" placeholder="Enter profile picture URL here..."></textarea>
+                <br>
+                <button type="submit" class="submit-btn">Submit</button>
+            </form>
+        </div>
+    </div>
+    {% else %}
+    <div class="profile-container">
+        <img class="profile-picture" src="{{ pfp }}" alt="Profile Picture"></img>
+        <div class="username">{{ username }}</div>
+        <div class="description">{{ description | safe }}</div>
+    </div>
+    {% endif %}
+</body>
+</html>
